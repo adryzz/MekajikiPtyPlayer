@@ -9,6 +9,7 @@ namespace MekajikiPtyPlayer.Views
     public class AnimeSelector : Window
     {
         private TreeView<object> tree;
+        private MenuBar bar;
         public AnimeSelector()
         {
             X = 0;
@@ -28,6 +29,28 @@ namespace MekajikiPtyPlayer.Views
             tree.ObjectActivated += TreeOnObjectActivated;
             Add(tree);
             Initialized += OnInitialized;
+
+            bar = new MenuBar
+            {
+                X = 0,
+                Y = 0,
+                Menus = new MenuBarItem[]
+                {
+                    new MenuBarItem
+                    {
+                        Title = "_File",
+                        Children = new MenuItem[]
+                        {
+                            new MenuItem
+                            {
+                                Title = "_Quit",
+                                Action = () => Environment.Exit(0)
+                            }
+                        }
+                    }
+                }
+            };
+            Add(bar);
         }
 
         private void OnInitialized(object? sender, EventArgs _)
