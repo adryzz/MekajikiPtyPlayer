@@ -1,7 +1,9 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
+using MekajikiPtyPlayer.Types;
 
 namespace MekajikiPtyPlayer.Connection
 {
@@ -9,8 +11,6 @@ namespace MekajikiPtyPlayer.Connection
     {
         public static string GetToken(Uri server, string name, string token)
         {
-            using HttpClient client = new HttpClient();
-            
             string endpoint =  "api/v1/GenerateToken";
             Uri uri = new Uri(server + endpoint);
             using HttpRequestMessage message = new HttpRequestMessage();
@@ -21,9 +21,41 @@ namespace MekajikiPtyPlayer.Connection
             message.Headers.Add("otp", token);
             message.Content = null;
             
-            var response = client.Send(message);
+            var response = call(message);
             response.EnsureSuccessStatusCode();
             return response.Content.ToString();
+        }
+
+        public static TreeAnimeListing GetAnimeListing(Uri server, string token)
+        {
+            string endpoint =  "api/v1/GetAnimeListing";
+            Uri uri = new Uri(server + endpoint);
+            using HttpRequestMessage message = new HttpRequestMessage();
+            
+            message.Method = HttpMethod.Get;
+            message.RequestUri = uri;
+            message.Headers.Add("token", token);
+            message.Content = null;
+            
+            var response = call(message);
+            response.EnsureSuccessStatusCode();
+            return JsonSerializer.Deserialize<TreeAnimeListing>(response.Content.ToString());
+        }
+        
+        
+        private static HttpResponseMessage? call(HttpRequestMessage message)
+        {
+            #if DEBUG
+            using var handler = new HttpClientHandler();
+            handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+            handler.ServerCertificateCustomValidationCallback = 
+                (httpRequestMessage, cert, cetChain, policyErrors) => true;
+            
+            using HttpClient client = new HttpClient(handler);
+            #else
+            using HttpClient client = new HttpClient();
+            #endif
+            return client.Send(message);
         }
     }
 }
