@@ -4,6 +4,6 @@ namespace MekajikiPtyPlayer.Types
 {
     public class AnimeListing
     {
-        public List<AnimeSeries> Series { get; }
+        public List<AnimeSeries> Series { get; set; }
     }
 }

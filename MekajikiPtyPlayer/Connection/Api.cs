@@ -44,8 +44,8 @@ namespace MekajikiPtyPlayer.Connection
             response.EnsureSuccessStatusCode();
             
             string json = response.Content.ReadAsStringAsync().Result;
-            
-            var listing = response.Content.ReadFromJsonAsync<AnimeListing>().Result;
+
+            var listing = JsonSerializer.Deserialize<AnimeListing>(json);
 
             return listing.Series;
         }
