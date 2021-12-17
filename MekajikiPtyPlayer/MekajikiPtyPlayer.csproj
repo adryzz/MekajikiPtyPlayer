@@ -11,10 +11,4 @@
       <PackageReference Include="Terminal.Gui" Version="1.3.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Reference Include="Mekajiki.Types, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\Mekajiki\Mekajiki\Mekajiki.Types\bin\Debug\net6.0\Mekajiki.Types.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
 </Project>

@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Mekajiki.Types;
 using MekajikiPtyPlayer.Types;
 
 namespace MekajikiPtyPlayer.Connection
@@ -30,7 +29,7 @@ namespace MekajikiPtyPlayer.Connection
             return response.Content.ToString();
         }
 
-        public static IEnumerable<IAnimeSeries> GetAnimeListing(Uri server, string token)
+        public static IEnumerable<AnimeSeries> GetAnimeListing(Uri server, string token)
         {
             string endpoint =  "api/v1/GetAnimeListing";
             Uri uri = new Uri(server + endpoint);
@@ -46,15 +45,7 @@ namespace MekajikiPtyPlayer.Connection
             
             string json = response.Content.ReadAsStringAsync().Result;
             
-            var listing = response.Content.ReadFromJsonAsync<AnimeListing>(new JsonSerializerOptions
-            {
-                Converters =
-                {
-                    new TypeMappingConverter<IAnimeSeries, AnimeSeries>(),
-                    new TypeMappingConverter<IAnimeSeason, AnimeSeason>(),
-                    new TypeMappingConverter<IAnimeEpisode, AnimeEpisode>()
-                }
-            }).Result;
+            var listing = response.Content.ReadFromJsonAsync<AnimeListing>().Result;
 
             return listing.Series;
         }

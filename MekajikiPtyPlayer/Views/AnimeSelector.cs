@@ -1,5 +1,4 @@
 using System;
-using Mekajiki.Types;
 using MekajikiPtyPlayer.Connection;
 using MekajikiPtyPlayer.Types;
 using Terminal.Gui;
@@ -46,7 +45,7 @@ namespace MekajikiPtyPlayer.Views
 
         private void TreeOnObjectActivated(ObjectActivatedEventArgs<object> obj)
         {
-            if (obj.ActivatedObject is IAnimeEpisode episode)
+            if (obj.ActivatedObject is AnimeEpisode episode)
             {
                 Uri uri = new Uri(Program.Config.Server +
                                   $"api/v1/GetAnimeEpisode?token={Program.Config.Token}&videoId={episode.EpisodeId}");

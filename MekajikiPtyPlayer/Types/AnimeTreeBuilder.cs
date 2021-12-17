@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Mekajiki.Types;
 using MekajikiPtyPlayer.Connection;
 using Terminal.Gui.Trees;
 
@@ -21,13 +20,13 @@ namespace MekajikiPtyPlayer.Types
 
         public static string GetName(object o)
         {
-            if (o is IAnimeSeries s)
+            if (o is AnimeSeries s)
                 return s.Name;
 
-            if (o is IAnimeSeason se)
+            if (o is AnimeSeason se)
                 return se.Name;
 
-            if (o is IAnimeEpisode e)
+            if (o is AnimeEpisode e)
                 return e.Name;
 
             return o.ToString();
