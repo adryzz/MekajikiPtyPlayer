@@ -1,30 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using Terminal.Gui.Trees;
 
 namespace MekajikiPtyPlayer.Types
 {
     public class TreeAnimeListing : ITreeNode
     {
-        //private IList<ITreeNode> series = new List<TreeAnimeSeries>();
+        private IList<ITreeNode> series = new List<ITreeNode>();
         public string Text { get; set; } = "Listing";
-        public IList<ITreeNode> Children
-        {
-            get
-            {
-                return new ITreeNode[]
-                {
-                    new TreeAnimeSeries
-                    {
-                        Text = "cock"
-                    },
-                    new TreeAnimeSeries
-                    {
-                        Text = "rushia1"
-                    }
-                }.ToList();
-            }
-        }
+        
+        [JsonPropertyName("series")]
+        public IList<ITreeNode> Children => series;
 
         public object Tag { get; set; }
     }
