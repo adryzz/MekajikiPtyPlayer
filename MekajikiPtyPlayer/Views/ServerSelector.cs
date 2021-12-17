@@ -78,7 +78,7 @@ namespace MekajikiPtyPlayer.Views
 
         private async Task ConnectButtonOnClicked()
         {
-            if (IPAddress.TryParse(ipField.Text.ToString(), out var ip))
+            if (Uri.TryCreate("https://" + ipField.Text.ToString(), UriKind.Absolute, out var ip))
             {
                 if (otpField.Text.Length != 6 && otpField.Text.ToByteArray().Cast<char>().Any(x => !char.IsDigit(x)))
                 {
@@ -87,7 +87,7 @@ namespace MekajikiPtyPlayer.Views
                 }
                 
                 Ping p = new Ping();
-                PingReply reply = await p.SendPingAsync(ip);
+                PingReply reply = await p.SendPingAsync(ip.Host);
                 if (reply.Status != IPStatus.Success)
                 {
                     MessageBox.ErrorQuery(8, 5, "Error while connecting", reply.Status.ToString(), "OK");
