@@ -102,6 +102,8 @@ namespace MekajikiPtyPlayer.Views
                     config.Server = ip;
                     config.Save("config.json");
                     Program.Config = config;
+                    MessageBox.Query(5, 5, "Info", "Done!", "OK");
+                    Environment.Exit(0);
                 }
                 catch (Exception e)
                 {
