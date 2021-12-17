@@ -36,7 +36,12 @@ namespace MekajikiPtyPlayer.Views
 
         private void TreeOnObjectActivated(ObjectActivatedEventArgs<ITreeNode> obj)
         {
-            
+            if (obj.ActivatedObject is TreeAnimeEpisode episode)
+            {
+                Uri uri = new Uri(Program.Config.Server +
+                                  $"api/v1/GetAnimeEpisode?token={Program.Config.Token}&videoId={episode.Tag}");
+                //open mpv on the uri
+            }
         }
     }
 }
