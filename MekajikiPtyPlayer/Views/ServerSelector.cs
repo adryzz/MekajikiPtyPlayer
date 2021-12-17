@@ -64,7 +64,7 @@ namespace MekajikiPtyPlayer.Views
                 X = Pos.Center(),
                 Y = Pos.Bottom(otpField)+1
             };
-            connectButton.Clicked += () => Task.Run(ConnectButtonOnClicked);
+            connectButton.Clicked += ConnectButtonOnClicked;
             
             Add(setupLabel);
             Add(ipLabel);
@@ -76,7 +76,7 @@ namespace MekajikiPtyPlayer.Views
             Add(connectButton);
         }
 
-        private async Task ConnectButtonOnClicked()
+        private void ConnectButtonOnClicked()
         {
             if (Uri.TryCreate("https://" + ipField.Text.ToString(), UriKind.Absolute, out var ip))
             {
@@ -87,14 +87,23 @@ namespace MekajikiPtyPlayer.Views
                 }
                 
                 Ping p = new Ping();
-                PingReply reply = await p.SendPingAsync(ip.Host);
+                PingReply reply = p.Send(ip.Host);
                 if (reply.Status != IPStatus.Success)
                 {
                     MessageBox.ErrorQuery(8, 5, "Error while connecting", reply.Status.ToString(), "OK");
                     return;
                 }
 
-                string token = await Api.GetTokenAsync(ip, usernameField.ToString(), otpField.ToString());
+                try
+                {
+                    string token = Api.GetToken(ip, usernameField.Text.ToString(), otpField.Text.ToString());
+                }
+                catch (Exception e)
+                {
+                    MessageBox.ErrorQuery(8, 8, "Error while connecting",
+                        e.InnerException != null ? e.InnerException.Message : e.Message, "OK");
+                }
+                
             }
             else
             {
