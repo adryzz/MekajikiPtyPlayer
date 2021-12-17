@@ -34,7 +34,7 @@ namespace MekajikiPtyPlayer.Views
         {
             try
             {
-                tree.AddObjects(tree.TreeBuilder.GetChildren(null));
+                tree.AddObjects(tree.TreeBuilder.GetChildren(this));
             }
             catch (Exception e)
             {
