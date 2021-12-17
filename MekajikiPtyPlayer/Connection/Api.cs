@@ -26,7 +26,7 @@ namespace MekajikiPtyPlayer.Connection
             return response.Content.ToString();
         }
 
-        public static TreeAnimeListing GetAnimeListing(Uri server, string token)
+        public static TreeAnimeSeries[] GetAnimeListing(Uri server, string token)
         {
             string endpoint =  "api/v1/GetAnimeListing";
             Uri uri = new Uri(server + endpoint);
@@ -39,7 +39,7 @@ namespace MekajikiPtyPlayer.Connection
             
             var response = call(message);
             response.EnsureSuccessStatusCode();
-            return JsonSerializer.Deserialize<TreeAnimeListing>(response.Content.ToString());
+            return JsonSerializer.Deserialize<TreeAnimeSeries[]>(response.Content.ToString());
         }
         
         

@@ -14,6 +14,7 @@ namespace MekajikiPtyPlayer
             if (Configuration.Exists("config.json"))
             {
                 Config = Configuration.FromFile("config.json");
+                Application.Top.Add(new AnimeSelector());
             }
             else
             {
