@@ -1,2 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using MekajikiPtyPlayer.Views;
+using Terminal.Gui;
+
+namespace MekajikiPtyPlayer
+{
+    public static class Program
+    {
+        public static void Main(string[] args)
+        {
+            Application.Init();
+            Application.Top.Add(new ServerSelector());
+            Application.Run();
+        }
+    }
+}
