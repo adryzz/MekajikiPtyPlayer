@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Mekajiki.Types;
 using MekajikiPtyPlayer.Types;
 
 namespace MekajikiPtyPlayer.Connection
@@ -29,7 +30,7 @@ namespace MekajikiPtyPlayer.Connection
             return response.Content.ToString();
         }
 
-        public static IEnumerable<TreeAnimeSeries> GetAnimeListing(Uri server, string token)
+        public static IEnumerable<IAnimeSeries> GetAnimeListing(Uri server, string token)
         {
             string endpoint =  "api/v1/GetAnimeListing";
             Uri uri = new Uri(server + endpoint);
