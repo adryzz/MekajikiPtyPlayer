@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using MekajikiPtyPlayer.Connection;
 using MekajikiPtyPlayer.Types;
 using Terminal.Gui;
@@ -72,7 +73,7 @@ namespace MekajikiPtyPlayer.Views
             {
                 Uri uri = new Uri(Program.Config.Server +
                                   $"api/v1/GetAnimeEpisode?token={Program.Config.Token}&videoId={episode.EpisodeId}");
-                //open mpv on the uri
+                Process.Start("/usr/bin/mpv", uri.ToString());
             }
         }
     }
