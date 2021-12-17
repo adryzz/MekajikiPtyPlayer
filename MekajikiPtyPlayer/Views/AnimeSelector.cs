@@ -21,9 +21,17 @@ namespace MekajikiPtyPlayer.Views
             Initialized += OnInitialized;
         }
 
-        private void OnInitialized(object? sender, EventArgs e)
+        private void OnInitialized(object? sender, EventArgs _)
         {
-            tree.AddObjects(Api.GetAnimeListing(Program.Config.Server, Program.Config.Token));
+            try
+            {
+                tree.AddObjects(Api.GetAnimeListing(Program.Config.Server, Program.Config.Token));
+            }
+            catch (System.IO.IOException e)
+            {
+                MessageBox.ErrorQuery(8, 8, "Error while connecting",
+                    e.InnerException != null ? e.InnerException.Message : e.Message, "OK");
+            }
         }
 
         private void TreeOnObjectActivated(ObjectActivatedEventArgs<ITreeNode> obj)
