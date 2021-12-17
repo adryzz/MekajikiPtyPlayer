@@ -73,7 +73,14 @@ namespace MekajikiPtyPlayer.Views
             {
                 Uri uri = new Uri(Program.Config.Server +
                                   $"api/v1/GetAnimeEpisode?token={Program.Config.Token}&videoId={episode.EpisodeId}");
-                Process.Start("/usr/bin/mpv", uri.ToString());
+                ProcessStartInfo si = new ProcessStartInfo
+                {
+                    FileName = "/usr/bin/mpv",
+                    Arguments = uri.ToString(),
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+                Process.Start(si);
             }
         }
     }
