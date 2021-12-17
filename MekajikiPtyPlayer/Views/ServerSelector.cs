@@ -97,6 +97,11 @@ namespace MekajikiPtyPlayer.Views
                 try
                 {
                     string token = Api.GetToken(ip, usernameField.Text.ToString(), otpField.Text.ToString());
+                    var config = new Configuration();
+                    config.Token = token;
+                    config.Server = ip;
+                    config.Save("config.json");
+                    Program.Config = config;
                 }
                 catch (Exception e)
                 {

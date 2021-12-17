@@ -6,11 +6,19 @@ namespace MekajikiPtyPlayer
 {
     public static class Program
     {
+        public static Configuration Config;
         public static void Main(string[] args)
         {
             Application.UseSystemConsole = true;
             Application.Init();
-            Application.Top.Add(new ServerSelector());
+            if (Configuration.Exists("config.json"))
+            {
+                Config = Configuration.FromFile("config.json");
+            }
+            else
+            {
+                Application.Top.Add(new ServerSelector());
+            }
             Application.Run();
         }
     }
