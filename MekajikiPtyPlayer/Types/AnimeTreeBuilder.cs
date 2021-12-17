@@ -15,7 +15,8 @@ namespace MekajikiPtyPlayer.Types
 
         public override IEnumerable<object> GetChildren(object forObject)
         {
-            return Api.GetAnimeListing(Program.Config.Server, Program.Config.Token);
+            var f = Api.GetAnimeListing(Program.Config.Server, Program.Config.Token);
+            return f;
         }
 
         public static string GetName(object o)
