@@ -27,7 +27,7 @@ namespace MekajikiPtyPlayer.Views
             {
                 tree.AddObjects(Api.GetAnimeListing(Program.Config.Server, Program.Config.Token));
             }
-            catch (System.IO.IOException e)
+            catch (Exception e)
             {
                 MessageBox.ErrorQuery(8, 8, "Error while connecting",
                     e.InnerException != null ? e.InnerException.Message : e.Message, "OK");
