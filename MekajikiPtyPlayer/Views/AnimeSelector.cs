@@ -78,9 +78,10 @@ namespace MekajikiPtyPlayer.Views
                     FileName = "/usr/bin/mpv",
                     Arguments = uri.ToString(),
                     RedirectStandardOutput = true,
-                    RedirectStandardError = true
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true
                 };
-                Process.Start(si);
+                Process.Start(si).WaitForExit();
             }
         }
     }
