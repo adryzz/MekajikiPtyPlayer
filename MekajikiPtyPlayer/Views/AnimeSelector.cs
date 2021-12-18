@@ -83,6 +83,17 @@ namespace MekajikiPtyPlayer.Views
                 };
                 Process.Start(si).WaitForExit();
             }
+            else if (obj.Tree.CanExpand(obj.ActivatedObject))
+            {
+                if (obj.Tree.IsExpanded(obj.ActivatedObject))
+                {
+                    obj.Tree.Collapse(obj.ActivatedObject);
+                }
+                else
+                {
+                    obj.Tree.Expand(obj.ActivatedObject);
+                }
+            }
         }
     }
 }
