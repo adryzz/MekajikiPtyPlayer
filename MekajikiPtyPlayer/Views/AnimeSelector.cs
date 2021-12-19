@@ -79,7 +79,7 @@ namespace MekajikiPtyPlayer.Views
                     Arguments = uri.ToString(),
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    RedirectStandardInput = true
+                    //RedirectStandardInput = true
                 };
                 Process.Start(si).WaitForExit();
             }
