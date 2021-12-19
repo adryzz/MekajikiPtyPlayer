@@ -11,15 +11,15 @@ namespace MekajikiPtyPlayer
 
             if (length < 1024 * 1024)
             {
-                return length / 1024d + "KiB";
+                return length / 1024 + "KiB";
             }
             
             if (length < 1024 * 1024 * 1024)
             {
-                return length / (1024d * 1024d) + "MiB";
+                return length / (1024 * 1024) + "MiB";
             }
 
-            return length / (1024d * 1024d * 1024d) + "GiB";
+            return length / (1024 * 1024 * 1024) + "GiB";
         }
     }
 }
