@@ -16,5 +16,8 @@ namespace MekajikiPtyPlayer.Types
 
         [JsonPropertyName("episodeId")]
         public Guid EpisodeId { get; set; }
+        
+        [JsonPropertyName("length")]
+        public long Length { get; set; }
     }
 }

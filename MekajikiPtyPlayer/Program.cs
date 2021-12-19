@@ -11,7 +11,7 @@ namespace MekajikiPtyPlayer
         {
             Application.UseSystemConsole = true;
             Application.Init();
-            
+
             if (Configuration.Exists("config.json"))
             {
                 Config = Configuration.FromFile("config.json");

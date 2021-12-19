@@ -35,7 +35,7 @@ namespace MekajikiPtyPlayer.Types
                 return se.Name;
 
             if (o is AnimeEpisode e)
-                return e.Name;
+                return e.Name + " - " + e.Length;
 
             return o.ToString();
         }
