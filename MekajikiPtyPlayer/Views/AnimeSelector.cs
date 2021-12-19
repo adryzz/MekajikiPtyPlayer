@@ -79,9 +79,9 @@ namespace MekajikiPtyPlayer.Views
                     Arguments = uri.ToString(),
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    //RedirectStandardInput = true
+                    RedirectStandardInput = true
                 };
-                Process.Start(si).WaitForExit();
+                Program.Mpv = Process.Start(si);
             }
             else if (obj.Tree.CanExpand(obj.ActivatedObject))
             {
