@@ -9,7 +9,7 @@ namespace MekajikiPtyPlayer
         public static Configuration Config;
         public static void Main(string[] args)
         {
-            //Application.UseSystemConsole = true;
+            Application.UseSystemConsole = true;
             Application.Init();
 
             if (Configuration.Exists("config.json"))
